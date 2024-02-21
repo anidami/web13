@@ -1,6 +1,6 @@
 Project description:
 Hello! This is my assignment 3. This project is a web application developed using Node.js, Express, MongoDB, and 
-other technologies. The project includes user administration functionalities, NASA API requests to retrieve data about asteroids, 
+other technologies to the cosmos topic. The project includes user administration functionalities, NASA API requests to retrieve data about asteroids, 
 and the Astronomy Picture of the Day.
 
 NeoWs API: Retrieves data about asteroids passing near Earth.
