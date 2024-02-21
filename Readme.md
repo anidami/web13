@@ -27,8 +27,7 @@ ejs: Creating and displaying HTML templates.
 body-parser: Processing form data in requests.
 
 Installation and Launch
-1. Clone the repository to your computer.
-[https://github.com/anidami/webmongo.git](https://github.com/anidami/web13)
+1. Clone the repository to your computer. - https://github.com/anidami/web13
 2. Install dependencies:
 npm install
 3. Create a .env file in the project's root directory and add necessary environment variables.
