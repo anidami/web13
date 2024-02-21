@@ -39,8 +39,7 @@ node server.js
 But also you can just open the vercel link with deployment I did.
 
 Notes
-For administrative access: LOGIN: anida PASSWORD: anidaanidakaa
+For administrative access: LOGIN: anidaa PASSWORD: 123
 Port: 3000
-Mongodb: Login: anida19, Password: anidam
 
 Made by Mitalipova Anida SE-2230
