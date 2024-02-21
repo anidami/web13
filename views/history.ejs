@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API History</title>
+
+</head>
+<body>
+<h1>API History</h1>
+
+<h2>Asteroids API History</h2>
+<ul>
+    <% if (asteroidsHistory && asteroidsHistory.length > 0) { %>
+        <% asteroidsHistory.forEach(function(entry) { %>
+            <li>
+                <strong>User Request:</strong> <%= entry.userRequest %><br>
+                <strong>API Outcome:</strong> <%= entry.apiOutcome %><br>
+                <strong>Timestamp:</strong> <%= entry.timestamp %>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <li>No history for Asteroids API.</li>
+    <% } %>
+</ul>
+
+<h2>Astronomy Picture API History</h2>
+<ul>
+    <% if (astPicHistory && astPicHistory.length > 0) { %>
+        <% astPicHistory.forEach(function(entry) { %>
+            <li>
+                <strong>User Request:</strong> <%= entry.userRequest %><br>
+                <strong>API Outcome:</strong> <%= entry.apiOutcome %><br>
+                <strong>Timestamp:</strong> <%= entry.timestamp %>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <li>No history for Astronomy Picture API.</li>
+    <% } %>
+</ul>
+
+</body>
+</html>

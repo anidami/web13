@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoWs Asteroids</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #004080;
+            margin: 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        nav {
+            background-color: #004080;
+            padding: 15px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #asteroidSearchForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #004080;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #004080;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #002633;
+        }
+
+        #infoMessage {
+            color: #808080;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #asteroidResults {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #contentContainer {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            background-color: #004080;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            margin-top: 100px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/astpic">Astronomy Picture</a>
+    <a href="/asteroids">Asteroids info</a>
+    <a href="/admin">Admin page</a>
+    <a href="/">Home</a>
+    <a href="/history">History</a>
+</nav>
+
+<div id="contentContainer">
+    <h1>Nearest Asteroids</h1>
+    <p> asteroids for today are displayed. Choose a date <br> or a range of dates on the calendar you want. The selected range should not exceed 7 days. </p>
+
+    <form id="asteroidSearchForm" action="/asteroids" method="GET">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <% if (asteroids && asteroids.length > 0) { %>
+        <div id="asteroidResults">
+            <ul>
+                <% asteroids.forEach(function(asteroid) { %>
+                    <li>
+                        <strong>Name:</strong> <%= asteroid.name %><br>
+                        <strong>ID:</strong> <%= asteroid.id %><br>
+                        <strong>Closest Approach Date:</strong> <%= asteroid.closestApproachDate %><br>
+                        <strong>Miss Distance:</strong> <%= asteroid.missDistance.kilometers %> kilometers
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } else { %>
+        <p id="infoMessage">No asteroids found for the specified date range.</p>
+    <% } %>
+</div>
+
+<footer>
+    <p>Mitalipova Anida SE-2230</p>
+</footer>
+</body>
+</html>

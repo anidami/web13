@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+
+        .navbar {
+            background-color: #004080;
+            padding: 15px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            top: 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 70px;
+        }
+
+        .admin-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            color: #004080;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            width: 31%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #002633;
+        }
+
+        h2 {
+            color: #004080;
+            margin-top: 36px;
+        }
+
+        h1 {
+            color: #004080;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul p {
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #004080;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar" id="navbar">
+    <a href="/astpic">Astronomy Picture</a>
+    <a href="/asteroids">Asteroids Info</a>
+    <a href="/admin">Admin Page</a>
+    <a href="/">Home</a>
+    <a href="/history">History</a>
+</div>
+
+<div class="admin-container">
+    <h1>Current users names:</h1>
+    <ul>
+        <% users.forEach(user => { %>
+            <p><%= user.username %> </p>
+        <% }); %>
+    </ul>
+
+    <h2>Update user:</h2>
+    <form action="/admin/editUser" method="POST">
+        <label for="userId">User ID:</label><br>
+        <input type="text" id="userId" name="userId" required><br><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="newUsername">New Username:</label><br>
+        <input type="text" id="newUsername" name="newUsername"><br><br>
+        <label for="newPassword">New Password:</label><br>
+        <input type="password" id="newPassword" name="newPassword"><br><br>
+        <button type="submit">Update User</button>
+    </form>
+
+
+
+    <h2>Delete user:</h2>
+    <form action="/admin/deleteUser" method="post">
+        <label for="deleteUsername">Username to delete:</label>
+        <input type="text" id="deleteUsername" name="deleteUsername" required><br><br>
+        <button type="submit">Delete User</button>
+    </form>
+</div>
+
+<footer>
+    <p>Mitalipova Anida SE-2230</p>
+</footer>
+
+<script>
+    function onResize() {
+        var navbar = document.getElementById('navbar');
+        if (navbar) {
+            navbar.classList.add('responsive');
+        }
+    }
+
+    function setupMobileNav() {
+        var navbar = document.getElementById('navbar');
+        if (navbar) {
+            navbar.classList.toggle('responsive');
+        }
+    }
+
+    window.addEventListener('resize', onResize);
+    document.addEventListener('DOMContentLoaded', function() {
+        onResize();
+        setupMobileNav();
+    });
+</script>
+
+<script>
+    function onResize() {
+        var navbar = document.getElementById('navbar');
+        if (navbar) {
+            navbar.classList.add('responsive');
+        }
+    }
+
+    function setupMobileNav() {
+        var navbar = document.getElementById('navbar');
+        if (navbar) {
+            navbar.classList.toggle('responsive');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        onResize();
+        setupMobileNav();
+    });
+</script>
+
+
+</body>
+</html>
