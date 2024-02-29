@@ -180,23 +180,21 @@
     <option value="ru">Русский</option>
 </select>
 
-<!-- Добавляем перед вашим кодом -->
+
 <script>
     function changeLanguage() {
         var languageSelector = document.getElementById('languageSelector');
         var selectedLanguage = languageSelector.value;
 
-        // Используйте Google Translate для динамического изменения языка
         var translate = new google.translate.TranslateElement({
-            pageLanguage: 'en', // Язык вашего сайта
-            includedLanguages: selectedLanguage, // Выбранный язык
+            pageLanguage: 'en',
+            includedLanguages: selectedLanguage,
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false
         }, 'google_translate_element');
 
-        // Мгновенно обновите перевод на странице
-        translate.showBanner(false); // Скрыть баннер
-        translate.showInElement(document.body); // Отобразить перевод в теле страницы
+        translate.showBanner(false);
+        translate.showInElement(document.body);
     }
 </script>
 

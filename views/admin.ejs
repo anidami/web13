@@ -108,9 +108,7 @@
         <% users.forEach(user => { %>
             <li>
                 <span><%= user.username %></span>
-                <!-- Ваша форма в admin.ejs -->
                 <form action="/admin/editUser" method="POST">
-                    <!-- Добавьте это поле для передачи userId -->
                     <input type="hidden" id="userId" name="userId" value="<%= user._id %>">
 
                     <label for="newUsername">New Username:</label>

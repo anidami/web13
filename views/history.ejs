@@ -93,11 +93,17 @@
         <% asteroidsHistory.forEach(function(entry) { %>
             <li>
                 <strong>User Request:</strong> <%= entry.userRequest %><br>
-                <strong>Outcome:</strong> <%= entry.apiOutcome %><br>
+                <strong>Outcome:</strong><br>
+                <% JSON.parse(entry.apiOutcome).forEach(function(asteroid) { %>
+                    Name: <%= asteroid.name %><br>
+                    ID: <%= asteroid.id %><br>
+                    Closest Approach Date: <%= asteroid.close_approach_data[0].close_approach_date %><br>
+                    Miss Distance: <%= asteroid.close_approach_data[0].miss_distance.kilometers %> kilometers<br><br>
+                <% }); %>
                 <strong>Timestamp:</strong> <%= entry.timestamp %>
             </li>
         <% }); %>
-    <% } else { %>
+<% } else { %>
         <li>No history for Asteroids API.</li>
     <% } %>
 </ul>

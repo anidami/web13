@@ -92,11 +92,17 @@
         <% astPicHistory.forEach(function(entry) { %>
             <li>
                 <strong>User Request:</strong> <%= entry.userRequest %><br>
-                <strong>Outcome:</strong> <%= entry.apiOutcome %><br>
+                <strong>Outcome:</strong><br>
+                <% const apodData = JSON.parse(entry.apiOutcome); %>
+                <strong>Date:</strong> <%= apodData.date %><br>
+                <strong>Title:</strong> <%= apodData.title %><br>
+                <strong>Explanation:</strong> <%= apodData.explanation %><br>
+                <strong>Image URL:</strong> <%= apodData.url %><br><br>
                 <strong>Timestamp:</strong> <%= entry.timestamp %>
             </li>
         <% }); %>
-    <% } else { %>
+
+<% } else { %>
         <li>No history for Astronomy Picture API.</li>
     <% } %>
 </ul>

@@ -25,7 +25,7 @@
             z-index: 100;
             display: flex;
             justify-content: flex-start;
-            top: 0; /* Зафиксировать навигацию вверху */
+            top: 0;
         }
 
         nav a {
@@ -41,7 +41,7 @@
         ul {
             list-style-type: none;
             padding: 0;
-            margin-top: 70px; /* Учтите высоту навигационной панели при размещении контента */
+            margin-top: 70px;
         }
 
         li {
@@ -49,8 +49,8 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 82%; /* Установите ширину в 80% ширины экрана */
-            margin: 0 auto; /* Центрируйте блок по горизонтали */
+            width: 82%;
+            margin: 0 auto;
             margin-bottom: 20px;
         }
 
@@ -120,16 +120,13 @@
 <ul>
     <% forms.forEach(form => { %>
         <li>
-            <!-- Display form details -->
             <h2><%= form.title %></h2>
             <p><%= form.description %></p>
 
-            <!-- Display image carousel -->
             <div class="carousel">
                 <% form.images.forEach((imageUrl, index) => { %>
                     <img src="<%= imageUrl %>" alt="Image" style="<%= index === 0 ? '' : 'display: none;' %>">
                 <% }); %>
-                <!-- Carousel navigation buttons -->
                 <button class="prev">&#10094; Prev</button>
                 <button class="next">Next &#10095;</button>
             </div>
@@ -137,7 +134,6 @@
     <% }); %>
 </ul>
 
-<!-- Добавляем перед вашим кодом -->
 <select id="languageSelector" onchange="changeLanguage()">
     <option value="en">English</option>
     <option value="es">Español</option>
@@ -183,7 +179,7 @@
         var languageSelector = document.getElementById('languageSelector');
         var selectedLanguage = languageSelector.value;
 
-        // Используйте Google Translate для динамического изменения языка
+
         var translate = new google.translate.TranslateElement({
             pageLanguage: 'en', // Язык вашего сайта
             includedLanguages: selectedLanguage, // Выбранный язык
@@ -191,9 +187,9 @@
             autoDisplay: false
         }, 'google_translate_element');
 
-        // Мгновенно обновите перевод на странице
-        translate.showBanner(false); // Скрыть баннер
-        translate.showInElement(document.body); // Отобразить перевод в теле страницы
+
+        translate.showBanner(false);
+        translate.showInElement(document.body);
     }
 </script>
 

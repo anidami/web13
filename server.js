@@ -39,7 +39,7 @@ async function requireAdmin(req, res, next) {
         if (!user || !user.isAdmin) {
             return res.redirect('/login');
         }
-        req.session.isAdmin = user.isAdmin; // Устанавливаем isAdmin в сессию только для админа
+        req.session.isAdmin = user.isAdmin;
         next();
     } catch (error) {
         console.error('Error checking admin status:', error);
@@ -60,6 +60,7 @@ app.post('/admin/editUser', requireAdmin, async (req, res) => {
         if (!user) {
             return res.status(404).send('User not found');
         }
+
         if (isAdmin !== undefined) {
             user.isAdmin = isAdmin;
         }
@@ -71,7 +72,7 @@ app.post('/admin/editUser', requireAdmin, async (req, res) => {
             user.password = hashedPassword;
         }
         await user.save();
-        res.redirect('/admin'); // Перенаправление на страницу администратора после обновления пользователя
+        res.redirect('/admin');
     } catch (error) {
         console.error('Error updating user:', error);
         res.status(500).send('Server Error');
@@ -86,7 +87,8 @@ app.post('/admin/deleteUser/:userId', requireAdmin, async (req, res) => {
         }
 
         await User.findByIdAndDelete(userId);
-        res.redirect('/admin'); // Перенаправление на страницу администратора после удаления пользователя
+        res.redirect('/admin');
+
     } catch (error) {
         console.error('Error deleting user:', error);
         res.status(500).send('Server Error');
@@ -102,7 +104,7 @@ app.post('/admin/deleteUser', requireAdmin, async (req, res) => {
         }
 
         await User.findOneAndDelete({ username: deleteUsername });
-        res.redirect('/admin'); // Перенаправление на страницу администратора после удаления пользователя
+        res.redirect('/admin');
     } catch (error) {
         console.error('Error deleting user:', error);
         res.status(500).send('Server Error');
@@ -118,7 +120,7 @@ app.post('/admin/grantAdmin', requireAdmin, async (req, res) => {
         }
         user.isAdmin = isAdmin || false;
         await user.save();
-        res.redirect('/admin'); // Перенаправление на страницу администратора после предоставления прав администратора
+        res.redirect('/admin');
     } catch (error) {
         console.error('Error granting admin access:', error);
         res.status(500).send('Server Error');
@@ -128,15 +130,12 @@ app.post('/admin/grantAdmin', requireAdmin, async (req, res) => {
 app.get('/admin', requireAdmin, async (req, res) => {
     try {
         const users = await User.find({});
-        res.render('admin', { users, isAdmin: true }); // Передаем флаг isAdmin в шаблон
+        res.render('admin', { users, isAdmin: true });
     } catch (error) {
         console.error('Error rendering admin page:', error);
         res.status(500).send('Error rendering admin page');
     }
 });
-
-
-
 
 
 
@@ -153,14 +152,14 @@ const Asteroid = mongoose.model('Asteroid', AsteroidSchema);
 const { Schema } = mongoose;
 
 const historySchema = new Schema({
+
     userRequest: String,
     apiOutcome: String,
     timestamp: { type: Date, default: Date.now }
+
 });
 
 const HistoryEntry = mongoose.model('HistoryEntry', historySchema);
-
-
 
 
 
@@ -216,7 +215,6 @@ app.get('/asteroids', async (req, res) => {
 
 
 
-
 const astronomyPicSchema = new mongoose.Schema({
     title: String,
     date: String,
@@ -250,7 +248,6 @@ app.get('/astpic', async (req, res) => {
         const today = new Date();
         const currentDate = today.toISOString().split('T')[0];
 
-        // Сохранение информации о фотографии дня в MongoDB
         const existingAstronomyPic = await AstronomyPic.findOne({ date: apodData.date });
 
         if (!existingAstronomyPic) {
@@ -268,6 +265,7 @@ app.get('/astpic', async (req, res) => {
             res.render('astpic', { apodData, savedToMongo: false, currentDate });
         }
     } catch (error) {
+
         console.error('Ошибка при получении данных из APOD API:', error);
         res.status(500).send('Внутренняя ошибка сервера');
     }
@@ -284,7 +282,6 @@ app.get('/history', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 
 
 
@@ -358,10 +355,6 @@ app.post('/login', async (req, res) => {
 
 
 
-
-
-
-
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
 
@@ -375,12 +368,14 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({
+
             username,
             password: hashedPassword,
             creationDate: new Date(),
             updateDate: null,
             deletionDate: null,
             isAdmin: false,
+
         });
 
         await newUser.save();
@@ -394,35 +389,32 @@ app.post('/register', async (req, res) => {
 
 
 
-
-
-
-
-// Form schema and model
 const formSchema = new mongoose.Schema({
+
     title: String,
     description: String,
-    images: [String], // Массив URL изображений
+    images: [String],
+
 });
 
 const Form = mongoose.model('Form', formSchema);
 
 
-// User schema and model (assuming only for the purpose of this example)
+
 const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
 });
 
 
-// Обработчик маршрута для '/rest'
+
 app.get('/rest', async (req, res) => {
     try {
-        // Получите список форм из базы данных или любой другой логики
-        const forms = await Form.find(); // Предположим, что у вас есть модель Form
 
-        // Рендеринг страницы '/rest' и передача переменной 'forms' в шаблон
-        res.render('rest', { forms });  // Замените 'rest' на фактическое представление или шаблон
+        const forms = await Form.find();
+
+
+        res.render('rest', { forms });
     } catch (error) {
         console.error(error);
         res.status(500).render('error', { error });
@@ -436,13 +428,12 @@ const authenticateToken = (req, res, next) => {
     next();
 };
 
-// Обработчик маршрута для '/restadmin'
+
+
 app.get('/restadmin', authenticateToken, requireAdmin, async (req, res) => {
     try {
-        // Получите список форм из базы данных (или любой другой логики)
-        const forms = await Form.find();
 
-        // Рендеринг страницы '/restadmin' и передача переменной 'forms' в шаблон
+        const forms = await Form.find();
         res.render('restadmin', { forms });
     } catch (error) {
         console.error(error);
@@ -450,27 +441,22 @@ app.get('/restadmin', authenticateToken, requireAdmin, async (req, res) => {
     }
 });
 
-// Форма для добавления новой формы
+
 app.get('/restadmin/add', (req, res) => {
     res.render('restadmin-add');
 });
 
-// Handling the form submission for adding a form
+
 app.post('/restadmin/add', async (req, res) => {
     try {
         const { title, description, images } = req.body;
         const imagesArray = images.split(',').map(image => image.trim());
         const newForm = new Form({ title, description, images: imagesArray });
 
-        // Валидация ввода (добавьте дополнительные проверки, если необходимо)
         if (!title || !description || !images) {
             return res.status(400).render('error', { error: new Error('All fields are required') });
         }
-
-        // Сохранение новой формы в базу данных
         await newForm.save();
-
-        // Перенаправление обратно на панель администратора
         res.redirect('/restadmin');
     } catch (error) {
         console.error(error);
@@ -480,7 +466,6 @@ app.post('/restadmin/add', async (req, res) => {
 
 
 
-// Render the form for updating a form
 app.get('/restadmin/update/:id', async (req, res) => {
     try {
         const formId = req.params.id;
@@ -499,12 +484,12 @@ app.get('/restadmin/update/:id', async (req, res) => {
     }
 });
 
-// Handling the form submission for updating a form
+
 app.post('/restadmin/update/:id', async (req, res) => {
     try {
         const formId = req.params.id;
 
-        // Update the form by ID
+
         const updatedForm = await Form.findByIdAndUpdate(formId, req.body, { new: true });
 
         if (!updatedForm) {
@@ -513,6 +498,7 @@ app.post('/restadmin/update/:id', async (req, res) => {
 
         // Redirect back to the admin panel
         res.redirect('/restadmin');
+
     } catch (error) {
         console.error(error);
         res.status(500).render('error', { error });
@@ -520,9 +506,6 @@ app.post('/restadmin/update/:id', async (req, res) => {
 });
 
 
-
-
-// Handling the delete request
 app.delete('/restadmin/delete/:id', async (req, res) => {
     try {
         const formId = req.params.id;
@@ -542,6 +525,7 @@ app.delete('/restadmin/delete/:id', async (req, res) => {
     }
 });
 
+
 app.get('/restadmin', authenticateToken, async (req, res) => {
     try {
         const forms = await Form.find();
@@ -551,13 +535,6 @@ app.get('/restadmin', authenticateToken, async (req, res) => {
         res.status(500).render('error', { error });
     }
 });
-
-
-
-
-
-
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

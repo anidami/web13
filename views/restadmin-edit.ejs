@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Другие теги head... -->
-    <!-- Подключение стилей для Slick Carousel -->
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
@@ -113,7 +112,6 @@
     <label for="description">Description:</label>
     <textarea id="description" name="description" required><%= form.description %></textarea>
 
-    <!-- Добавление карусели -->
     <label for="images">Images (comma-separated URLs):</label>
     <div class="carousel">
         <% form.images.forEach(imageUrl => { %>
@@ -125,11 +123,10 @@
     <button type="submit">Update Form</button>
 </form>
 
-<!-- Подключение скрипта для Slick Carousel -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<!-- Инициализация карусели -->
+
 <script>
     $(document).ready(function(){
         $('.carousel').slick({
