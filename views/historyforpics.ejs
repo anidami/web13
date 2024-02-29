@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API History</title>
+    <style>
+        .navbar {
+            background-color: #004080;
+            padding: 15px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            top: 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        h1 {
+            color: #004080;
+            margin: 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-left: 110px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #ffffffcc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: #00000019;
+            margin-bottom: 31px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        strong {
+            color: #004080;
+        }
+
+        footer {
+            background-color: #004080;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="/astpic">Astronomy Picture</a>
+    <a href="/asteroids">Asteroids info</a>
+    <a href="/admin">Admin page</a>
+    <a href="/rest">Space info</a>
+    <a href="/">Home</a>
+    <a href="/history">History for Asteroids</a>
+    <a href="/historyforpics">History for Pics</a>
+</div>
+
+<h1>API History</h1>
+<h2>Astronomy Picture API History</h2>
+<ul>
+    <% if (astPicHistory && astPicHistory.length > 0) { %>
+        <% astPicHistory.forEach(function(entry) { %>
+            <li>
+                <strong>User Request:</strong> <%= entry.userRequest %><br>
+                <strong>Outcome:</strong> <%= entry.apiOutcome %><br>
+                <strong>Timestamp:</strong> <%= entry.timestamp %>
+            </li>
+        <% }); %>
+    <% } else { %>
+        <li>No history for Astronomy Picture API.</li>
+    <% } %>
+</ul>
+<footer>
+    <p>Mitalipova Anida SE-2230</p>
+</footer>
+</body>
+</html>

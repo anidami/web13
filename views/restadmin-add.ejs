@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Другие теги head... -->
+    <!-- Подключение стилей для Slick Carousel -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        h1 {
+            color: #004080;
+            margin: 20px;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Ширина формы */
+            margin: 0 auto; /* Центрирование формы по горизонтали */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #004080;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px; /* Отступ между кнопками */
+        }
+
+        button:hover {
+            background-color: #002633;
+        }
+    </style>
+</head>
+<body>
+<h1>Add a New Form</h1>
+
+<form action="/restadmin/add" method="POST">
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <!-- Добавление карусели для трех изображений -->
+    <label for="images">Images (comma-separated URLs, three images):</label>
+    <textarea id="images" name="images" required></textarea>
+    <div class="carousel">
+        <!-- Изображения будут отображаться здесь -->
+        <!-- Добавлен класс "slick-carousel" -->
+    </div>
+
+    <button type="submit">Add Form</button>
+</form>
+
+<!-- Подключение скрипта для Slick Carousel -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Инициализация карусели -->
+<script>
+    $(document).ready(function(){
+        // Используем класс "carousel" для инициализации карусели
+        $('.carousel').slick({
+            // Настройки карусели
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
+    });
+</script>
+</body>
+</html>

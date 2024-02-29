@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Form</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #004080;
+            padding: 15px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-start;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #004080;
+            margin: 20px;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        p {
+            margin: 20px;
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        button {
+            background-color: #ff4040;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        a {
+            color: #004080;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/">Home</a>
+    <a href="/restadmin">Admin page</a>
+</nav>
+
+<h1>Delete Form</h1>
+
+<p>Are you sure you want to delete the form:</p>
+<p><%= form.title %></p>
+
+<form action="/restadmin/delete/<%= form._id %>" method="POST">
+    <button type="submit">Delete</button>
+</form>
+
+<a href="/restadmin">Cancel</a>
+</body>
+</html>

@@ -1,21 +1,19 @@
-Project description:
-Hello! This is my assignment 3. This project is a web application developed using Node.js, Express, MongoDB, and 
-other technologies to the cosmos topic. The project includes user administration functionalities, NASA API requests to retrieve data about asteroids, 
-and the Astronomy Picture of the Day.
+Hello! This is my assignment #4. This project is a web application developed using Node.js, Express, MongoDB, and other technologies dedicated to space exploration. The project includes 
+user management functionalities, NASA API requests for retrieving asteroid data, and displaying Astronomy Picture of the Day. Additionally, a RESTful API has been created and implemented, featuring a main page and an admin page that includes pages for CRUD operations. Admins have the capability to edit, delete, and add items related to the space theme on the main page for the REST API.
 
-NeoWs API: Retrieves data about asteroids passing near Earth.
-Astronomy Picture of the Day (APOD) API: Fetches daily astronomy pictures.
-NASA API for TimezoneDB: Provides information about the time zones.
+API NeoWs: Retrieves data about asteroids passing near Earth.
+API Astronomy Picture of the Day (APOD): Fetches daily astronomy pictures.
+
 Features
 User Registration and Authentication: Users can register, authenticate, and log in to explore various features.
+Regarding language usage, all main pages are in English as they contain basic words, ensuring users with even a low level of English can navigate the site easily. 
+The site is designed to be simple and user-friendly, allowing intuitive navigation thanks to its well-thought-out design. In other words, the site has multi-language support, allowing users to select their preferred language for a personalized experience.
 
-User Management: Administrators can view, edit, and delete users. (LOGIN: anida PASSWORD: anidaanidakaa)
-
+User Management: Administrators can view, edit, and delete users. (LOGIN: anidaa PASSWORD: 123)
+REST API Management: Admins can add, modify, edit, and delete forms with three images placed in a carousel, along with their titles and descriptions.
 Asteroid Information Retrieval: Users can obtain data about asteroids, including closest approach date and miss distance.
-
 Astronomy Picture of the Day: Users can explore daily astronomy pictures with detailed explanations.
-
-Query History: The application stores user query history, capturing queries to NeoWs API and APOD API along with their results.
+Query History: The application stores user query history, capturing queries to the NeoWs API and APOD API along with their results on separate pages for asteroids and daily photos.
 
 Technologies and Tools Used
 Node.js and Express.js: Backend development.

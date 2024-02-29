@@ -106,33 +106,31 @@
     <h1>Current users names:</h1>
     <ul>
         <% users.forEach(user => { %>
-            <p><%= user.username %> </p>
+            <li>
+                <span><%= user.username %></span>
+                <!-- Ваша форма в admin.ejs -->
+                <form action="/admin/editUser" method="POST">
+                    <!-- Добавьте это поле для передачи userId -->
+                    <input type="hidden" id="userId" name="userId" value="<%= user._id %>">
+
+                    <label for="newUsername">New Username:</label>
+                    <input type="text" id="newUsername" name="newUsername" required>
+
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword">
+
+                    <button type="submit">Update User</button>
+                </form>
+
+                <form action="/admin/deleteUser" method="post">
+                    <label for="deleteUsername">Username to delete:</label>
+                    <input type="text" id="deleteUsername" name="deleteUsername" value="<%= user.username %>" required hidden>
+                    <button type="submit">Delete User</button>
+                </form>
+            </li>
         <% }); %>
     </ul>
-
-    <h2>Update user:</h2>
-    <form action="/admin/editUser" method="POST">
-        <label for="userId">User ID:</label><br>
-        <input type="text" id="userId" name="userId" required><br><br>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="newUsername">New Username:</label><br>
-        <input type="text" id="newUsername" name="newUsername"><br><br>
-        <label for="newPassword">New Password:</label><br>
-        <input type="password" id="newPassword" name="newPassword"><br><br>
-        <button type="submit">Update User</button>
-    </form>
-
-
-
-    <h2>Delete user:</h2>
-    <form action="/admin/deleteUser" method="post">
-        <label for="deleteUsername">Username to delete:</label>
-        <input type="text" id="deleteUsername" name="deleteUsername" required><br><br>
-        <button type="submit">Delete User</button>
-    </form>
 </div>
-
 <footer>
     <p>Mitalipova Anida SE-2230</p>
 </footer>

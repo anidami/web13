@@ -1,0 +1,212 @@
+<!-- rest.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaaacee</title>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #004080;
+            padding: 15px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-start;
+            top: 0; /* Зафиксировать навигацию вверху */
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 70px; /* Учтите высоту навигационной панели при размещении контента */
+        }
+
+        li {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 82%; /* Установите ширину в 80% ширины экрана */
+            margin: 0 auto; /* Центрируйте блок по горизонтали */
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #004080;
+            margin: 20px;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        #languageSelector {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        #languageSelector {
+            padding: 8px;
+            font-size: 14px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #004080;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            margin-top: 100px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/astpic">Astronomy Picture</a>
+    <a href="/asteroids">Asteroids info</a>
+    <a href="/admin">Admin page</a>
+    <a href="/">Home</a>
+    <a href="/history">History</a>
+    <a href="/restadmin">Rest Admin</a>
+</nav>
+
+<div id="google_translate_element"></div>
+
+<h1>Interesting information about space </h1>
+
+<ul>
+    <% forms.forEach(form => { %>
+        <li>
+            <!-- Display form details -->
+            <h2><%= form.title %></h2>
+            <p><%= form.description %></p>
+
+            <!-- Display image carousel -->
+            <div class="carousel">
+                <% form.images.forEach((imageUrl, index) => { %>
+                    <img src="<%= imageUrl %>" alt="Image" style="<%= index === 0 ? '' : 'display: none;' %>">
+                <% }); %>
+                <!-- Carousel navigation buttons -->
+                <button class="prev">&#10094; Prev</button>
+                <button class="next">Next &#10095;</button>
+            </div>
+        </li>
+    <% }); %>
+</ul>
+
+<!-- Добавляем перед вашим кодом -->
+<select id="languageSelector" onchange="changeLanguage()">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="ru">Русский</option>
+</select>
+
+
+<script>
+    const carousels = document.querySelectorAll('.carousel');
+
+    carousels.forEach(carousel => {
+        let index = 0;
+        const images = carousel.querySelectorAll('img');
+        const totalImages = images.length;
+        const prevBtn = carousel.querySelector('.prev');
+        const nextBtn = carousel.querySelector('.next');
+
+        function showImage(idx) {
+            images.forEach((img, i) => {
+                if (i === idx) {
+                    img.style.display = 'block';
+                } else {
+                    img.style.display = 'none';
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            index = (index - 1 + totalImages) % totalImages;
+            showImage(index);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            index = (index + 1) % totalImages;
+            showImage(index);
+        });
+    });
+</script>
+
+<script>
+    function changeLanguage() {
+        var languageSelector = document.getElementById('languageSelector');
+        var selectedLanguage = languageSelector.value;
+
+        // Используйте Google Translate для динамического изменения языка
+        var translate = new google.translate.TranslateElement({
+            pageLanguage: 'en', // Язык вашего сайта
+            includedLanguages: selectedLanguage, // Выбранный язык
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+
+        // Мгновенно обновите перевод на странице
+        translate.showBanner(false); // Скрыть баннер
+        translate.showInElement(document.body); // Отобразить перевод в теле страницы
+    }
+</script>
+
+<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en'
+        }, 'google_translate_element');
+    }
+</script>
+
+<footer>
+    <p>Mitalipova Anida SE-2230</p>
+</footer>
+</body>
+</html>
